@@ -113,14 +113,24 @@ if Bulbasaur_pokemon_info:
 
 print("Bulbasaur stats:")
 
-Bul_attack = calculate_attack(Bulbasaur_pokemon_info)
-print(f"Attack: {Bul_attack}")
-Bul_defense = calculate_defense(Bulbasaur_pokemon_info)
-print(f"Defense: {Bul_defense}")
-Bul_speed = calculate_speed(Bulbasaur_pokemon_info)
-print(f"Speed: {Bul_speed}")
-Bul_hp = calculate_HP(Bulbasaur_pokemon_info)
-print(f"HP: {Bul_hp}")
+Bul_Base_attack = calculate_attack(Bulbasaur_pokemon_info)
+print(f"Attack: {Bul_Base_attack}")
+Bul_Base_defense = calculate_defense(Bulbasaur_pokemon_info)
+print(f"Defense: {Bul_Base_defense}")
+Bul_Base_speed = calculate_speed(Bulbasaur_pokemon_info)
+print(f"Speed: {Bul_Base_speed}")
+Bul_Base_hp = calculate_HP(Bulbasaur_pokemon_info)
+print(f"HP: {Bul_Base_hp}")
+
+print("")
+print("Bulbasaur calculated stats at level 50")
+
+Bul_attack = calculate_stat(Bul_Base_attack)
+print(f"Base Attack: {Bul_attack}")
+Bul_defense = calculate_stat(Bul_Base_defense)
+print(f"Base Defense: {Bul_defense}")
+Bul_speed = calculate_stat(Bul_Base_speed)
+print(f"Base Speed: {Bul_speed}")
 
 print("")
 print("Pikachu base stats:")
@@ -136,5 +146,10 @@ print(f"HP: {Pi_Base_hp}")
 
 print("")
 print("Pikachu calculated stats at level 50")
+
 Pi_attack = calculate_stat(Pi_Base_attack)
 print(f"Base Attack: {Pi_attack}")
+Pi_defense = calculate_stat(Pi_Base_defense)
+print(f"Base Defense: {Pi_defense}")
+Pi_speed = calculate_stat(Pi_Base_speed)
+print(f"Base Speed: {Pi_speed}")
