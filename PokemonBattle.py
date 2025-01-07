@@ -38,11 +38,72 @@ def calculate_HP(information):
         if j['stat']['name'] == "hp":
             return (j['base_stat'])
 
+base_url = "https://pokeapi.co/api/v2/"
 
+def get_pokemon_info(name):
+    url= f"{base_url}/pokemon/{name}"
+    response = requests.get(url)
+    print(response)
+
+    if response.status_code == 200:
+        pokemon_data = response.json()
+        return (pokemon_data)
+    else:
+        print(f"Failed to retrieve data {response.status_code}")
 
 
 
 def simulate_battle(pokemon1, pokemon2):
+    Pokemon1_pokemon_info = get_pokemon_info(pokemon1)
+    Pokemon2_pokemon_info = get_pokemon_info(pokemon2)
+
+    print(f"{pokemon1 } stats:")
+
+    Pokemon1_Base_attack = calculate_attack(Pokemon1_pokemon_info)
+    print(f"Base Attack: {Pokemon1_Base_attack}")
+    Pokemon1_Base_defense = calculate_defense(Pokemon1_pokemon_info)
+    print(f"Base Defense: {Pokemon1_Base_defense}")
+    Pokemon1_Base_speed = calculate_speed(Pokemon1_pokemon_info)
+    print(f"Base Speed: {Pokemon1_Base_speed}")
+    Pokemon1_Base_hp = calculate_HP(Pokemon1_pokemon_info)
+    print(f"Base HP: {Pokemon1_Base_hp}")
+
+    print("")
+
+    print(f"{pokemon1} calculated stats at level 50")
+
+    Pokemon1_attack = calculate_stat(Pokemon1_Base_attack)
+    print(f"Attack: {Pokemon1_attack}")
+    Pokemon1_defense = calculate_stat(Pokemon1_Base_defense)
+    print(f"Defense: {Pokemon1_defense}")
+    Pokemon1_speed = calculate_stat(Pokemon1_Base_speed)
+    print(f"Speed: {Pokemon1_speed}")
+    Pokemon1_hp = calculate_hp(Pokemon1_Base_hp)
+    print(f"HP: {Pokemon1_hp}")
+
+    Pokemon1_name_key = "name"
+    Pokemon1_attack_key = "attack"
+    Pokemon1_defense_key = "defense"
+    Pokemon1_speed_key = "speed"
+    Pokemon1_hp_key = "hp"
+
+    Pokemon1_STATS = {Pokemon1_name_key: pokemon1, Pokemon1_attack_key: Pokemon1_attack, Pokemon1_defense_key: Pokemon1_defense, Pokemon1_speed_key: Pokemon1_speed, Pokemon1_hp_key: Pokemon1_hp}
+    print(Pokemon1_STATS)
+    
+
+    print("")
+    print(f"{pokemon2 } stats:")
+
+    Pokemon2_Base_attack = calculate_attack(Pokemon2_pokemon_info)
+    print(f"Attack: {Pokemon2_Base_attack}")
+    Pokemon2_Base_defense = calculate_defense(Pokemon2_pokemon_info)
+    print(f"Defense: {Pokemon2_Base_defense}")
+    Pokemon2_Base_speed = calculate_speed(Pokemon2_pokemon_info)
+    print(f"Speed: {Pokemon2_Base_speed}")
+    Pokemon2_Base_hp = calculate_HP(Pokemon2_pokemon_info)
+    print(f"HP: {Pokemon2_Base_hp}")
+    
+    
     """Simulate a battle between two Pokémon."""
     # TODO: Fetch Pokémon Data
     # - Create lowercase URLs for both Pokémon
@@ -77,6 +138,9 @@ def simulate_battle(pokemon1, pokemon2):
     # - Show victory message
     # - Display winner
 
+
+
+
 if __name__ == "__main__":
     simulate_battle("pikachu", "bulbasaur")
 
@@ -88,25 +152,14 @@ Helper Info:
 """
 
 
-base_url = "https://pokeapi.co/api/v2/"
-
-def get_pokemon_info(name):
-    url= f"{base_url}/pokemon/{name}"
-    response = requests.get(url)
-    print(response)
-
-    if response.status_code == 200:
-        pokemon_data = response.json()
-        return (pokemon_data)
-    else:
-        print(f"Failed to retrieve data {response.status_code}")
-
-Pokemon1 = "pikachu"
-Pikachu_pokemon_info = get_pokemon_info(Pokemon1)
-Pokemon2 = "bulbasaur"
-Bulbasaur_pokemon_info = get_pokemon_info(Pokemon2)
 
 
+
+
+
+
+
+"""
 if Bulbasaur_pokemon_info:
     print(f"{Bulbasaur_pokemon_info["name"]}")
     print(f"{Bulbasaur_pokemon_info["id"]}")
@@ -153,3 +206,5 @@ Pi_defense = calculate_stat(Pi_Base_defense)
 print(f"Base Defense: {Pi_defense}")
 Pi_speed = calculate_stat(Pi_Base_speed)
 print(f"Base Speed: {Pi_speed}")
+
+"""
