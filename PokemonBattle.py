@@ -89,6 +89,7 @@ def simulate_battle(pokemon1, pokemon2):
 
     Pokemon1_STATS = {Pokemon1_name_key: pokemon1, Pokemon1_attack_key: Pokemon1_attack, Pokemon1_defense_key: Pokemon1_defense, Pokemon1_speed_key: Pokemon1_speed, Pokemon1_hp_key: Pokemon1_hp}
     print(Pokemon1_STATS)
+    print(Pokemon1_STATS['attack'])
     
 
     print("")
@@ -102,7 +103,52 @@ def simulate_battle(pokemon1, pokemon2):
     print(f"Speed: {Pokemon2_Base_speed}")
     Pokemon2_Base_hp = calculate_HP(Pokemon2_pokemon_info)
     print(f"HP: {Pokemon2_Base_hp}")
+
+    print
+    print(f"{pokemon2} calculated stats at level 50")
+
+    Pokemon2_attack = calculate_stat(Pokemon2_Base_attack)
+    print(f"Attack: {Pokemon2_attack}")
+    Pokemon2_defense = calculate_stat(Pokemon2_Base_defense)
+    print(f"Defense: {Pokemon2_defense}")
+    Pokemon2_speed = calculate_stat(Pokemon2_Base_speed)
+    print(f"Speed: {Pokemon2_speed}")
+    Pokemon2_hp = calculate_hp(Pokemon2_Base_hp)
+    print(f"HP: {Pokemon2_hp}")
+
+    Pokemon2_name_key = "name"
+    Pokemon2_attack_key = "attack"
+    Pokemon2_defense_key = "defense"
+    Pokemon2_speed_key = "speed"
+    Pokemon2_hp_key = "hp"
+
+    Pokemon2_STATS = {Pokemon2_name_key: pokemon2, Pokemon2_attack_key: Pokemon2_attack, Pokemon2_defense_key: Pokemon2_defense, Pokemon2_speed_key: Pokemon2_speed, Pokemon2_hp_key: Pokemon2_hp}
+    print(Pokemon2_STATS)
+    print(Pokemon2_STATS['attack'])
+
+    print("")
+    print(f"THE BATTLE OF THE WORLD IS COMMENCING. {pokemon1} VS {pokemon2}")
+    print("OH IT IS ONNNNNNNNNNNNNN")
+    print("3!!!")
+    print("2!!")
+    print("1!")
+    print("FIGHT! A...O.. amina'maaaa")
+
+    if Pokemon1_STATS['speed'] > Pokemon2_STATS['speed']:
+        Attacker = Pokemon1_STATS
+        Defender = Pokemon2_STATS
+    else:
+        Attacker = Pokemon2_STATS
+        Defender = Pokemon1_STATS
     
+    print (f"ATTACKER ISSSSS: {Attacker['name']}")
+    print (f"DEFENDER ISSSSS: {Defender['name']}")
+
+    x = 0
+    while x==0:
+        for i in range (0,99):
+            if i == 3:
+                x==1
     
     """Simulate a battle between two Pokémon."""
     # TODO: Fetch Pokémon Data
