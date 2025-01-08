@@ -148,31 +148,46 @@ def simulate_battle(pokemon1, pokemon2):
     print (f"DEFENDER ISSSSS: {Defender['name']}")
 
     Round_number = 1
-    
-    Attacker_Damage = calculate_damage(Attacker, Defender)
-    print(Attacker_Damage)
-    Defender_HP = Defender['hp'] - Attacker_Damage
-    print(Defender_HP)
-    if Defender_HP > 0:
-        if StorageNumber == 0:
-            Defender.update({Pokemon2_hp_key: Defender_HP})
-        elif StorageNumber == 1:
-            Defender.update({Pokemon1_hp_key: Defender_HP})
-        print(Defender)
-        Defender_Damage = calculate_damage(Defender, Attacker)
-        print(Defender_Damage)
-        Attacker_HP = Attacker['hp'] - Defender_Damage
-        print(Attacker_HP)
-        if Attacker_HP > 0:
+    while True:
+
+        print(f"ROUND {Round_number}")
+        time.sleep(2)
+        print(f"{Attacker['name']} attacks!!!")
+        time.sleep(1)
+        print("")
+        Attacker_Damage = calculate_damage(Attacker, Defender)
+        print(Attacker_Damage)
+        Defender_HP = Defender['hp'] - Attacker_Damage
+        print(f"{Defender['name']} has taken {Attacker_Damage} damage")
+        if Defender_HP > 0:
             if StorageNumber == 0:
-                Attacker.update({Pokemon1_hp_key: Attacker_HP})
+                Defender.update({Pokemon2_hp_key: Defender_HP})
             elif StorageNumber == 1:
-                Attacker.update({Pokemon2_hp_key: Attacker_HP})
+                Defender.update({Pokemon1_hp_key: Defender_HP})
+            print(f"{Defender['name']} IS STILL SURVIVING WITH {Defender['hp']} hp")
+            time.sleep(2)
+            print(f"NOW {Defender['name']} attacks for revenge")
+            time.sleep(2)
+            Defender_Damage = calculate_damage(Defender, Attacker)
+            Attacker_HP = Attacker['hp'] - Defender_Damage
+            print(f"{Attacker['name']} has taken {Defender_Damage} damage")
+            time.sleep(3)
+            if Attacker_HP > 0:
+                if StorageNumber == 0:
+                    Attacker.update({Pokemon1_hp_key: Attacker_HP})
+                elif StorageNumber == 1:
+                    Attacker.update({Pokemon2_hp_key: Attacker_HP})
+                print(f"{Attacker['name']} IS ALIVE WITH {Attacker_HP} hp. He says 'COME AT ME' ")
+                Round_number = Round_number + 1
+                print("")
+            else:
+                print(f"{Attacker['name']} has fainted OH NOOO")
+                print(f"{Defender['name']} is victorious with {Defender_HP} hp remaining")
+                break      
         else:
-            print(f"{Attacker['name']} has fainted OH NOOO")
-            
-    else:
-        print(f"{Defender['name']} has fainted OH NOOO")
+            print(f"{Defender['name']} has fainted OH NOOO")
+            print(f"{Attacker['name']} is victorious with {Attacker_HP} hp remaining")
+            break
 
 
 
@@ -216,7 +231,7 @@ def simulate_battle(pokemon1, pokemon2):
 
 
 if __name__ == "__main__":
-    simulate_battle("pikachu", "mewtwo")
+    simulate_battle("pikachu", "bulbasaur")
 
 """
 Helper Info:
