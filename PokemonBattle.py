@@ -1,4 +1,5 @@
 import requests
+import time
 
 def calculate_stat(base_stat, level=50, iv=15, ev=85):
     """Calculate Pokémon's stat at given level."""
@@ -137,19 +138,46 @@ def simulate_battle(pokemon1, pokemon2):
     if Pokemon1_STATS['speed'] > Pokemon2_STATS['speed']:
         Attacker = Pokemon1_STATS
         Defender = Pokemon2_STATS
+        StorageNumber = 0
     else:
         Attacker = Pokemon2_STATS
         Defender = Pokemon1_STATS
+        StorageNumber = 1
     
     print (f"ATTACKER ISSSSS: {Attacker['name']}")
     print (f"DEFENDER ISSSSS: {Defender['name']}")
 
-    x = 0
-    while x==0:
-        for i in range (0,99):
-            if i == 3:
-                x==1
+    Round_number = 1
     
+    Attacker_Damage = calculate_damage(Attacker, Defender)
+    print(Attacker_Damage)
+    Defender_HP = Defender['hp'] - Attacker_Damage
+    print(Defender_HP)
+    if Defender_HP > 0:
+        if StorageNumber == 0:
+            Defender.update({Pokemon2_hp_key: Defender_HP})
+        elif StorageNumber == 1:
+            Defender.update({Pokemon1_hp_key: Defender_HP})
+        print(Defender)
+        Defender_Damage = calculate_damage(Defender, Attacker)
+        print(Defender_Damage)
+        Attacker_HP = Attacker['hp'] - Defender_Damage
+        print(Attacker_HP)
+        if Attacker_HP > 0:
+            if StorageNumber == 0:
+                Attacker.update({Pokemon1_hp_key: Attacker_HP})
+            elif StorageNumber == 1:
+                Attacker.update({Pokemon2_hp_key: Attacker_HP})
+        else:
+            print(f"{Attacker['name']} has fainted OH NOOO")
+            
+    else:
+        print(f"{Defender['name']} has fainted OH NOOO")
+
+
+
+
+
     """Simulate a battle between two Pokémon."""
     # TODO: Fetch Pokémon Data
     # - Create lowercase URLs for both Pokémon
@@ -188,7 +216,7 @@ def simulate_battle(pokemon1, pokemon2):
 
 
 if __name__ == "__main__":
-    simulate_battle("pikachu", "bulbasaur")
+    simulate_battle("pikachu", "mewtwo")
 
 """
 Helper Info:
